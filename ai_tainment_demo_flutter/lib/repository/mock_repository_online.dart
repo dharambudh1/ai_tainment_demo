@@ -12,7 +12,7 @@ class MockRepositoryOnline extends GetConnect {
     httpClient.sendUserAgent = true;
   }
 
-  final String baseURL = "https://ai-tainment-backend.onrender.com/";
+  final String baseURL = "https://ai-tainment-demo.onrender.com/";
 
   Future<List<SubjectModel>> getSubjects(
     int subjectPage,

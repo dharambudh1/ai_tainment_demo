@@ -5,7 +5,7 @@
 # while buildFilter paths stay relative to the repository root.
 services:
   - type: web
-    name: ai-tainment-backend
+    name: ai-tainment-demo
     runtime: node
     plan: free
     rootDir: ai_tainment_demo_backend

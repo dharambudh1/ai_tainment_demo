@@ -31,7 +31,7 @@ flutter run
 ```
 
 Out of the box it calls the deployed backend at
-`https://ai-tainment-backend.onrender.com/`. **No backend? No problem** — see
+`https://ai-tainment-demo.onrender.com/`. **No backend? No problem** — see
 [Going offline](#going-offline) to run entirely on generated data.
 
 ## Architecture
@@ -181,7 +181,7 @@ Dataset size for the offline generator lives in `config/page_config.dart`
 `lib/repository/mock_repository_online.dart`:
 
 ```dart
-final String baseURL = "https://ai-tainment-backend.onrender.com/";
+final String baseURL = "https://ai-tainment-demo.onrender.com/";
 ```
 
 Swap in `http://localhost:3000/` for a local backend, or your machine's LAN IP (which

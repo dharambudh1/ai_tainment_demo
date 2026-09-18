@@ -110,7 +110,7 @@ it is. [`render.yaml`](../render.yaml) at the repo root already declares that:
 ```yaml
 services:
   - type: web
-    name: ai-tainment-backend
+    name: ai-tainment-demo
     runtime: node
     rootDir: ai_tainment_demo_backend   # commands run from here
     buildCommand: npm install
@@ -153,11 +153,13 @@ and binds `0.0.0.0`, which is what Render requires.
 `lib/repository/mock_repository_online.dart`:
 
 ```dart
-final String baseURL = "https://ai-tainment-backend.onrender.com/";
+final String baseURL = "https://ai-tainment-demo.onrender.com/";
 ```
 
-If your Render service gets a different name, update that string to match — or point
-it at your machine's LAN address to develop against a local server.
+That must match your Render service's name — the live deployment is
+`ai-tainment-demo`, so a service named anything else needs that string updated. For
+local development, point it at `http://localhost:3000/`, or at the LAN address the
+server prints on boot when running on a physical device.
 
 > **Free tier note:** Render spins free services down after inactivity. The first
 > request after an idle period can take 50+ seconds while the instance cold-starts,
