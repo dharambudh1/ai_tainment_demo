@@ -70,37 +70,28 @@ Each line's three cells are joined into a string and compared against `"XXX"` /
 
 ```dart
 final String cells = line.map((int i) => ticTacToeGrid[i] ?? "").join();
+
+if (cells == "XXX") {
+  return "X";
+}
+
+if (cells == "OOO") {
+  return "O";
+}
 ```
+
+The loop returns only on a match; a non-matching line falls through to the next one,
+and `null` is returned once all eight have been checked.
 
 ## Known issues
 
-**Only the top row is ever checked for a win.** In `checkWinner()`, the `return`
-sits inside the `for` loop unconditionally, so the first iteration always returns and
-the remaining seven lines are unreachable:
+None outstanding. One notable bug has been fixed: `checkWinner()` previously had its
+`return` unguarded inside the `for` loop, so the first iteration always returned and
+the remaining seven win lines were unreachable — only the top row was ever checked.
+It now returns only on a match and falls through otherwise, so all eight lines are
+tested.
 
-```dart
-for (final List<int> line in winPossibility) {
-  final String cells = /* ... */;
-  return (cells == "XXX") ? "X" : (cells == "OOO") ? "O" : null;   // ← returns on line 1
-}
-```
-
-In practice a win on any row but the top, any column, or either diagonal goes
-undetected, and play continues until the board fills and reports a draw. The fix is
-to only return on a match and let the loop continue otherwise:
-
-```dart
-String? checkWinner() {
-  for (final List<int> line in winPossibility) {
-    final String cells = line.map((int i) => ticTacToeGrid[i] ?? "").join();
-    if (cells == "XXX") return "X";
-    if (cells == "OOO") return "O";
-  }
-  return null;
-}
-```
-
-Other rough edges, left as-is to keep the file minimal:
+Rough edges left as-is to keep the file minimal:
 
 - No turn indicator — whose move it is isn't shown anywhere on screen.
 - No score kept across resets.

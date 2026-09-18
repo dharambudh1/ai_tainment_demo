@@ -106,12 +106,15 @@ class _MainAppState extends State<MainApp> {
         return ticTacToeGrid[i] ?? "";
       }).join();
 
-      /// Checking if the line is a winning line
-      return (cells == "XXX")
-          ? "X"
-          : (cells == "OOO")
-          ? "O"
-          : null;
+      /// A match ends the search; anything else must fall through to the
+      /// next line, or only the first line would ever be checked.
+      if (cells == "XXX") {
+        return "X";
+      }
+
+      if (cells == "OOO") {
+        return "O";
+      }
     }
 
     return null;
