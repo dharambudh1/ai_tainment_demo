@@ -50,3 +50,6 @@ app.*.map.json
 # Gradle caches / local build state
 **/.gradle/
 **/android/local.properties
+
+# Editor config: machine-specific SDK paths
+.vscode/
