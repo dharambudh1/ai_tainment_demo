@@ -1,0 +1,22 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+#
+# This repo is a monorepo, so the backend service is pinned to its subdirectory
+# with `rootDir`. buildCommand/startCommand run relative to that directory,
+# while buildFilter paths stay relative to the repository root.
+services:
+  - type: web
+    name: ai-tainment-backend
+    runtime: node
+    plan: free
+    rootDir: ai_tainment_demo_backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    autoDeploy: true
+    # Without this, every Flutter-only commit would redeploy the API.
+    buildFilter:
+      paths:
+        - ai_tainment_demo_backend/**
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
